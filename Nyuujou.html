@@ -19,7 +19,6 @@
       width: 100%;
       padding: 0.5rem;
       margin-top: 0.3rem;
-      box-sizing: border-box;
     }
     .button-wrapper {
       text-align: center;
@@ -59,8 +58,6 @@
     </div>
   </form>
 
-  <div id="result" style="margin-top:1.5rem;"></div>
-
   <script>
     document.getElementById("reserveForm").addEventListener("submit", function(e) {
       e.preventDefault();
@@ -71,18 +68,16 @@
         data.append(pair[0], pair[1]);
       }
 
-      //YOUR_WEBAPP_URLにURLを代入
-      fetch('https://script.google.com/macros/s/AKfycbx6TClcddm-q4nKwpy3Xd22flYoRL3SaZVj3cOsfGUTaKi9dGWi1YAfMHB7quMLSndOuA/exec', {
+      fetch('https://script.google.com/macros/s/AKfycbwk3Y22noG92LK1NVPcwwBYAm9OzAJJJ9K0umlWjvAryj3fU257gDVq_AEtcJNAHzVkOA/exec', {
         method: 'POST',
         body: data,
       })
       .then(response => response.text())
-      .then(text => {
-        document.getElementById("result").textContent = text;
-        this.reset();
+      .then(id => {
+        window.location.href = `thanks.html?id=${encodeURIComponent(id)}`;
       })
       .catch(error => {
-        document.getElementById("result").textContent = 'エラーが発生しました。もう一度お試しください。';
+        alert('送信中にエラーが発生しました。もう一度お試しください。');
         console.error(error);
       });
     });
