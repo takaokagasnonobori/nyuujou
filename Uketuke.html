@@ -1,7 +1,8 @@
 <Uketuke html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>受付完了</title>
   <style>
     body {
@@ -9,25 +10,24 @@
       padding: 2rem;
       text-align: center;
     }
-    h1 {
-      font-size: 1.5rem;
-    }
-    .id {
-      margin-top: 1rem;
-      font-weight: bold;
+    .entry-id {
+      margin-top: 1.5rem;
       font-size: 1.2rem;
+      font-weight: bold;
       color: #0066cc;
     }
   </style>
 </head>
 <body>
   <h1>ご来場ありがとうございます！</h1>
-  <div class="id" id="entryId"></div>
+  <div class="entry-id" id="entryId">受付番号を取得中です...</div>
 
   <script>
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
-    document.getElementById("entryId").textContent = `受付番号：${id}`;
+    document.getElementById("entryId").textContent = id
+      ? `受付番号：${id}`
+      : '受付番号の取得に失敗しました。';
   </script>
 </body>
 </html>
